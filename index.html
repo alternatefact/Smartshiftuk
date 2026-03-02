@@ -3,6 +3,10 @@
 <head>
 <meta charset="UTF-8">
 
+<!-- Favicon -->
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231e2228'/%3E%3Ctext x='32' y='44' font-family='Georgia,serif' font-size='38' font-weight='700' font-style='italic' fill='%234a7c59' text-anchor='middle'%3ES%3C/text%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231e2228'/%3E%3Ctext x='32' y='44' font-family='Georgia,serif' font-size='38' font-weight='700' font-style='italic' fill='%234a7c59' text-anchor='middle'%3ES%3C/text%3E%3C/svg%3E">
+
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-KWHP3N0PS5"></script>
 <script>
@@ -35,14 +39,24 @@
   }
 
   // ── Show banner if no decision yet ────────────────────────
-  window.addEventListener('load', function() {
+  function initCookieBanner() {
     const choice = localStorage.getItem('suk_cookie');
     if (!choice) {
-      setTimeout(() => document.getElementById('cookieBanner').classList.remove('hidden'), 1500);
+      setTimeout(function() {
+        const banner = document.getElementById('cookieBanner');
+        if (banner) banner.classList.remove('hidden');
+      }, 1500);
     } else if (choice === 'accepted') {
       gtag('consent', 'update', { analytics_storage: 'granted' });
     }
-  });
+  }
+
+  // Use both DOMContentLoaded and load to catch all cases
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initCookieBanner);
+  } else {
+    initCookieBanner();
+  }
 </script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <title>SmartShiftUK — NHS Shift Tax Calculator</title>
@@ -50,18 +64,18 @@
 
 <!-- Open Graph / WhatsApp / Facebook -->
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://smartshiftuk.co.uk/">
+<meta property="og:url" content="https://smartshiftuk.com/">
 <meta property="og:title" content="SmartShiftUK — NHS Shift Tax Calculator">
 <meta property="og:description" content="How many locum shifts can you take without crossing into inefficient tax? Free calculator for NHS doctors, nurses, HCAs and AHPs. Takes 60 seconds.">
-<meta property="og:image" content="https://smartshiftuk.co.uk/preview.png">
+<meta property="og:image" content="https://smartshiftuk.com/preview.png">
 <meta property="og:site_name" content="SmartShiftUK">
 
 <!-- Twitter / X Card -->
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:url" content="https://smartshiftuk.co.uk/">
+<meta name="twitter:url" content="https://smartshiftuk.com/">
 <meta name="twitter:title" content="SmartShiftUK — NHS Shift Tax Calculator">
 <meta name="twitter:description" content="How many locum shifts can you take without crossing into inefficient tax? Free calculator for NHS doctors, nurses, HCAs and AHPs.">
-<meta name="twitter:image" content="https://smartshiftuk.co.uk/preview.png">
+<meta name="twitter:image" content="https://smartshiftuk.com/preview.png">
 <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,600&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,700;1,9..144,300;1,9..144,400;1,9..144,500&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 /* ── TOKENS ─────────────────────────────────────────── */
@@ -111,7 +125,7 @@ body {
   color: var(--ink);
   font-family: 'Nunito', sans-serif;
   min-height: 100vh;
-  font-size: 16px;
+  font-size: 17px;
   overflow-x: hidden;
 }
 
@@ -241,7 +255,7 @@ body::before {
 }
 
 .hl-threshold-label {
-  font-size: 0.72rem;
+  font-size: 0.96rem;
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 1.5px;
@@ -293,14 +307,14 @@ body::before {
 
 .hl-thresh-title {
   font-family: 'Fraunces', serif;
-  font-size: 0.85rem;
+  font-size: 0.98rem;
   font-weight: 700;
   color: white;
   margin-bottom: 3px;
 }
 
 .hl-thresh-who {
-  font-size: 0.72rem;
+  font-size: 0.96rem;
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 0.8px;
@@ -311,14 +325,14 @@ body::before {
 .hl-thresh-red    .hl-thresh-who { color: #c4b5fd; }
 
 .hl-thresh-body {
-  font-size: 0.7rem;
+  font-size: 1.0rem;
   line-height: 1.55;
   color: rgba(255,255,255,0.62);
 }
 
-.hl-thresh-icon { margin-right: 5px; font-size: 0.85rem; }
+.hl-thresh-icon { margin-right: 5px; font-size: 0.98rem; }
 .hl-thresh-icon-top {
-  font-size: 0.6rem;
+  font-size: 0.96rem;
   font-weight: 900;
   letter-spacing: 0.05em;
   background: rgba(255,255,255,0.25);
@@ -366,7 +380,7 @@ body::before {
   letter-spacing: -0.5px;
 }
 .hl-badge {
-  font-size: 0.72rem;
+  font-size: 0.96rem;
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 1px;
@@ -385,7 +399,7 @@ body::before {
   padding: 0 0 40px;
 }
 .hl-kicker {
-  font-size: 0.7rem;
+  font-size: 1.0rem;
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 2px;
@@ -403,7 +417,7 @@ body::before {
 }
 .hl-headline em { font-style: italic; color: #7ec894; }
 .hl-sub {
-  font-size: 0.9rem;
+  font-size: 0.96rem;
   line-height: 1.7;
   color: rgba(255,255,255,0.75);
   margin-bottom: 28px;
@@ -420,7 +434,7 @@ body::before {
   margin-bottom: 32px;
 }
 .hl-pill {
-  font-size: 0.72rem;
+  font-size: 0.96rem;
   font-weight: 700;
   background: rgba(255,255,255,0.1);
   border: 1px solid rgba(255,255,255,0.18);
@@ -465,8 +479,8 @@ body::before {
 }
 .hl-feat:hover { background: rgba(255,255,255,0.11); transform: translateY(-2px); }
 .hl-feat-icon { font-size: 1.4rem; margin-bottom: 8px; }
-.hl-feat-title { font-family: 'Fraunces', serif; font-size: 0.88rem; font-weight: 700; color: white; margin-bottom: 6px; }
-.hl-feat-body { font-size: 0.72rem; line-height: 1.55; color: rgba(255,255,255,0.6); }
+.hl-feat-title { font-family: 'Fraunces', serif; font-size: 1.0rem; font-weight: 700; color: white; margin-bottom: 6px; }
+.hl-feat-body { font-size: 0.96rem; line-height: 1.55; color: rgba(255,255,255,0.6); }
 .hl-compare {
   position: relative;
   z-index: 1;
@@ -481,13 +495,13 @@ body::before {
 .hl-compare-col { border-radius: 12px; padding: 16px 14px; }
 .hl-others { background: rgba(220,38,38,0.1); border: 1px solid rgba(220,38,38,0.2); }
 .hl-us     { background: rgba(74,124,89,0.15); border: 1px solid rgba(74,124,89,0.3); }
-.hl-col-title { font-size: 0.72rem; font-weight: 800; margin-bottom: 12px; color: white; }
+.hl-col-title { font-size: 0.96rem; font-weight: 800; margin-bottom: 12px; color: white; }
 .hl-compare-col ul { list-style: none; display: flex; flex-direction: column; gap: 7px; }
-.hl-compare-col li { font-size: 0.72rem; line-height: 1.4; color: rgba(255,255,255,0.7); padding-left: 4px; }
+.hl-compare-col li { font-size: 0.96rem; line-height: 1.4; color: rgba(255,255,255,0.7); padding-left: 4px; }
 .hl-us li { color: rgba(255,255,255,0.85); }
 .hl-us li strong { color: #7ec894; }
 .hl-scroll-cta { position: relative; z-index: 1; text-align: center; }
-.hl-scroll-label { font-size: 0.75rem; font-weight: 700; color: rgba(255,255,255,0.5); letter-spacing: 0.5px; margin-bottom: 10px; }
+.hl-scroll-label { font-size: 0.98rem; font-weight: 700; color: rgba(255,255,255,0.5); letter-spacing: 0.5px; margin-bottom: 10px; }
 .hl-arrow-bounce { font-size: 1.4rem; color: #7ec894; animation: bounce 1.8s ease-in-out infinite; }
 @keyframes bounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(8px)} }
 .hl-kicker    { animation: riseIn 0.5s 0.1s both; }
@@ -547,7 +561,7 @@ body::before {
 
 .logo-nhs {
   font-family: 'Nunito', sans-serif;
-  font-size: 0.78rem;
+  font-size: 1.0rem;
   font-weight: 800;
   color: var(--role-color);
   background: var(--role-light);
@@ -561,7 +575,7 @@ body::before {
 }
 
 .header-sub {
-  font-size: 0.85rem;
+  font-size: 0.98rem;
   color: var(--ink3);
   font-weight: 500;
   display: flex;
@@ -582,7 +596,7 @@ body::before {
   background: var(--white);
   border: 1.5px solid var(--border2);
   border-radius: 20px;
-  font-size: 0.72rem;
+  font-size: 0.96rem;
   font-weight: 700;
   color: var(--ink3);
   padding: 4px 12px;
@@ -591,7 +605,7 @@ body::before {
 
 /* ── SECTION LABEL ───────────────────────────────────── */
 .section-label {
-  font-size: 0.72rem;
+  font-size: 0.96rem;
   font-weight: 800;
   letter-spacing: 2px;
   text-transform: uppercase;
@@ -657,13 +671,13 @@ body::before {
 
 .r-icon { font-size: 1.8rem; margin-bottom: 8px; display: block; }
 .r-name {
-  font-size: 0.78rem;
+  font-size: 1.0rem;
   font-weight: 800;
   color: var(--ink);
   margin-bottom: 3px;
 }
 .r-desc {
-  font-size: 0.72rem;
+  font-size: 0.96rem;
   color: var(--ink4);
   line-height: 1.4;
 }
@@ -681,7 +695,7 @@ body::before {
   border: 2px solid var(--border2);
   background: var(--white);
   font-family: 'Nunito', sans-serif;
-  font-size: 0.72rem;
+  font-size: 0.96rem;
   font-weight: 700;
   color: var(--ink3);
   cursor: pointer;
@@ -733,14 +747,14 @@ body::before {
 }
 
 .section-title {
-  font-size: 0.88rem;
+  font-size: 1.0rem;
   font-weight: 800;
   color: var(--ink);
   margin-bottom: 2px;
 }
 
 .section-desc {
-  font-size: 0.72rem;
+  font-size: 0.96rem;
   font-weight: 500;
   color: var(--ink4);
   font-style: italic;
@@ -751,7 +765,7 @@ body::before {
   padding: 10px 14px;
   background: var(--role-light);
   border-radius: var(--radius-sm);
-  font-size: 0.72rem;
+  font-size: 0.96rem;
   font-weight: 500;
   color: var(--ink3);
   line-height: 1.5;
@@ -779,7 +793,7 @@ body::before {
 }
 
 .loaded-tag {
-  font-size: 0.7rem;
+  font-size: 1.0rem;
   font-weight: 700;
   color: var(--sage);
   background: var(--sage3);
@@ -817,7 +831,7 @@ body::before {
   border: none;
   background: none;
   font-family: 'Nunito', sans-serif;
-  font-size: 0.72rem;
+  font-size: 0.96rem;
   font-weight: 700;
   color: var(--ink3);
   cursor: pointer;
@@ -846,7 +860,7 @@ body::before {
 .field.full { grid-column: 1/-1; }
 
 .flabel {
-  font-size: 0.72rem;
+  font-size: 0.96rem;
   font-weight: 800;
   color: var(--ink3);
   letter-spacing: 0.3px;
@@ -857,7 +871,7 @@ body::before {
 
 .flabel em {
   font-style: normal;
-  font-size: 0.72rem;
+  font-size: 0.96rem;
   font-weight: 600;
   color: var(--role-color);
   background: var(--role-light);
@@ -873,12 +887,12 @@ body::before {
   left: 14px; top: 50%;
   transform: translateY(-50%);
   font-family: 'Fira Mono', monospace;
-  font-size: 0.85rem;
+  font-size: 0.98rem;
   color: var(--ink4);
   pointer-events: none;
 }
 
-.sym-r { left: auto; right: 14px; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.5px; }
+.sym-r { left: auto; right: 14px; font-size: 0.96rem; font-weight: 600; letter-spacing: 0.5px; }
 
 input, select {
   width: 100%;
@@ -887,7 +901,7 @@ input, select {
   border-radius: var(--radius-sm);
   color: var(--ink);
   font-family: 'Fira Mono', monospace;
-  font-size: 0.92rem;
+  font-size: 0.98rem;
   font-weight: 500;
   padding: 12px 14px;
   outline: none;
@@ -918,7 +932,7 @@ input::placeholder { color: var(--ink4); font-weight: 400; }
 input[type="text"] { text-transform: uppercase; letter-spacing: 2px; }
 
 .fnote {
-  font-size: 0.7rem;
+  font-size: 1.0rem;
   font-weight: 600;
   color: var(--ink4);
   font-style: italic;
@@ -926,7 +940,7 @@ input[type="text"] { text-transform: uppercase; letter-spacing: 2px; }
 }
 
 .tc-hint {
-  font-size: 0.7rem;
+  font-size: 1.0rem;
   font-weight: 700;
   color: var(--sage);
   min-height: 15px;
@@ -942,7 +956,7 @@ input[type="text"] { text-transform: uppercase; letter-spacing: 2px; }
   margin: 4px 0;
 }
 .fdivider span {
-  font-size: 0.72rem;
+  font-size: 0.96rem;
   font-weight: 800;
   letter-spacing: 1.5px;
   text-transform: uppercase;
@@ -1064,7 +1078,7 @@ input[type="text"] { text-transform: uppercase; letter-spacing: 2px; }
 .stat-card[style*="border-top-color:var(--sky2)"]::before  { background: var(--sky2); }
 
 .stat-label {
-  font-size: 0.72rem;
+  font-size: 0.96rem;
   font-weight: 800;
   letter-spacing: 1px;
   text-transform: uppercase;
@@ -1082,7 +1096,7 @@ input[type="text"] { text-transform: uppercase; letter-spacing: 2px; }
 }
 
 .stat-sub {
-  font-size: 0.7rem;
+  font-size: 1.0rem;
   font-weight: 600;
   color: var(--ink4);
   margin-top: 5px;
@@ -1091,7 +1105,7 @@ input[type="text"] { text-transform: uppercase; letter-spacing: 2px; }
 
 .monthly-tag {
   display: inline-block;
-  font-size: 0.72rem;
+  font-size: 0.96rem;
   font-weight: 800;
   letter-spacing: 1px;
   text-transform: uppercase;
@@ -1118,7 +1132,7 @@ input[type="text"] { text-transform: uppercase; letter-spacing: 2px; }
 .adv-sky     { background: var(--sky3);      border-color: rgba(74,144,184,0.25); }
 
 .adv-head {
-  font-size: 0.9rem;
+  font-size: 0.96rem;
   font-weight: 800;
   color: var(--ink);
   margin-bottom: 10px;
@@ -1128,7 +1142,7 @@ input[type="text"] { text-transform: uppercase; letter-spacing: 2px; }
 }
 
 .advice-card p {
-  font-size: 0.92rem;
+  font-size: 0.98rem;
   line-height: 1.75;
   color: var(--ink2);
   font-weight: 500;
@@ -1160,7 +1174,7 @@ input[type="text"] { text-transform: uppercase; letter-spacing: 2px; }
 }
 
 .tc-decoded {
-  font-size: 0.88rem;
+  font-size: 1.0rem;
   font-weight: 600;
   font-style: italic;
   color: var(--ink3);
@@ -1172,7 +1186,7 @@ input[type="text"] { text-transform: uppercase; letter-spacing: 2px; }
   background: var(--lavender3);
   color: var(--lavender);
   border-radius: 20px;
-  font-size: 0.72rem;
+  font-size: 0.96rem;
   font-weight: 800;
   padding: 3px 10px;
   margin-bottom: 10px;
@@ -1181,7 +1195,7 @@ input[type="text"] { text-transform: uppercase; letter-spacing: 2px; }
 .tc-notice {
   border-radius: var(--radius-sm);
   padding: 12px 16px;
-  font-size: 0.85rem;
+  font-size: 0.98rem;
   font-weight: 600;
   line-height: 1.65;
   color: var(--ink2);
@@ -1216,7 +1230,7 @@ input[type="text"] { text-transform: uppercase; letter-spacing: 2px; }
 
 .pension-right { flex: 1; }
 .pension-title {
-  font-size: 0.72rem;
+  font-size: 0.96rem;
   font-weight: 800;
   letter-spacing: 1px;
   text-transform: uppercase;
@@ -1224,7 +1238,7 @@ input[type="text"] { text-transform: uppercase; letter-spacing: 2px; }
   margin-bottom: 7px;
 }
 .pension-body {
-  font-size: 0.85rem;
+  font-size: 0.98rem;
   font-weight: 500;
   font-style: italic;
   color: rgba(255,255,255,0.65);
@@ -1252,13 +1266,13 @@ input[type="text"] { text-transform: uppercase; letter-spacing: 2px; }
 }
 
 .table-ttl {
-  font-size: 0.88rem;
+  font-size: 1.0rem;
   font-weight: 800;
   color: var(--ink);
 }
 
 .table-info {
-  font-size: 0.7rem;
+  font-size: 1.0rem;
   font-weight: 600;
   color: var(--ink4);
   font-style: italic;
@@ -1271,7 +1285,7 @@ table { width: 100%; border-collapse: collapse; min-width: 500px; }
 thead { background: var(--bg2); }
 
 th {
-  font-size: 0.72rem;
+  font-size: 0.96rem;
   font-weight: 800;
   letter-spacing: 1px;
   text-transform: uppercase;
@@ -1286,7 +1300,7 @@ th:not(:first-child) { text-align: right; }
 td {
   padding: 12px 14px;
   font-family: 'Fira Mono', monospace;
-  font-size: 0.75rem;
+  font-size: 0.98rem;
   color: var(--ink3);
   border-bottom: 1px solid var(--border);
   vertical-align: middle;
@@ -1299,7 +1313,7 @@ tr.tr-danger td { background: var(--rose3); }
 
 .badge {
   display: inline-block;
-  font-size: 0.72rem;
+  font-size: 0.96rem;
   font-weight: 800;
   padding: 2px 7px;
   border-radius: 20px;
@@ -1363,14 +1377,14 @@ tr.tr-danger td { background: var(--rose3); }
 }
 
 .shift-picker-label {
-  font-size: 0.85rem;
+  font-size: 0.98rem;
   font-weight: 700;
   color: var(--ink2);
 }
 
 .shift-picker-label span {
   display: block;
-  font-size: 0.72rem;
+  font-size: 0.96rem;
   font-weight: 500;
   color: var(--ink4);
   font-style: italic;
@@ -1417,7 +1431,7 @@ tr.tr-danger td { background: var(--rose3); }
 .planner-warning {
   margin: 0;
   padding: 14px 22px;
-  font-size: 0.85rem;
+  font-size: 0.98rem;
   font-weight: 600;
   line-height: 1.6;
   color: var(--ink2);
@@ -1444,7 +1458,7 @@ tr.tr-danger td { background: var(--rose3); }
 .planner-tbl thead { background: var(--bg2); }
 
 .planner-tbl th {
-  font-size: 0.72rem;
+  font-size: 0.96rem;
   font-weight: 800;
   color: var(--ink4);
   padding: 9px 16px;
@@ -1458,7 +1472,7 @@ tr.tr-danger td { background: var(--rose3); }
 .planner-tbl td {
   padding: 11px 16px;
   font-family: 'Nunito', sans-serif;
-  font-size: 0.82rem;
+  font-size: 0.96rem;
   font-weight: 600;
   color: var(--ink3);
   border-bottom: 1px solid var(--border);
@@ -1478,7 +1492,7 @@ tr.tr-danger td { background: var(--rose3); }
 /* Status badges */
 .st-pill {
   display: inline-block;
-  font-size: 0.72rem;
+  font-size: 0.96rem;
   font-weight: 800;
   padding: 3px 8px;
   border-radius: 20px;
@@ -1508,7 +1522,7 @@ tr.tr-danger td { background: var(--rose3); }
   gap: 6px;
   padding: 7px 14px;
   border-radius: 50px;
-  font-size: 0.72rem;
+  font-size: 0.96rem;
   font-weight: 700;
   border: 1.5px solid;
 }
@@ -1538,7 +1552,7 @@ tr.tr-danger td { background: var(--rose3); }
 }
 
 .sa-eyebrow {
-  font-size: 0.72rem;
+  font-size: 0.96rem;
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 1px;
@@ -1562,7 +1576,7 @@ tr.tr-danger td { background: var(--rose3); }
 .sa-headline .sa-safe { color: #16a34a; font-weight: 800; }
 
 .sa-subline {
-  font-size: 0.78rem;
+  font-size: 1.0rem;
   color: var(--ink3);
   line-height: 1.6;
   font-style: italic;
@@ -1587,7 +1601,7 @@ tr.tr-danger td { background: var(--rose3); }
 }
 
 .sa-th-label {
-  font-size: 0.72rem;
+  font-size: 0.96rem;
   font-weight: 700;
   color: var(--ink4);
   text-transform: uppercase;
@@ -1613,7 +1627,7 @@ tr.tr-danger td { background: var(--rose3); }
 }
 
 .sa-th-net-amt { color: var(--role-color); transition: color 0.4s; }
-.sa-th-split   { font-size: 0.72rem; color: var(--ink4); font-weight: 500; }
+.sa-th-split   { font-size: 0.96rem; color: var(--ink4); font-weight: 500; }
 
 /* Prominent breakdown rows */
 .sa-th-breakdown {
@@ -1639,28 +1653,28 @@ tr.tr-danger td { background: var(--rose3); }
 .sa-th-row-ttl { background: var(--role-light); transition: background 0.4s; }
 
 .sa-th-row-label {
-  font-size: 0.72rem;
+  font-size: 0.96rem;
   font-weight: 600;
   color: var(--ink3);
   flex: 1;
 }
 
 .sa-th-row-val {
-  font-size: 0.82rem;
+  font-size: 0.96rem;
   font-weight: 800;
   color: var(--ink2);
   white-space: nowrap;
 }
 
 .sa-th-row-ttl-val {
-  font-size: 0.88rem;
+  font-size: 1.0rem;
   color: var(--role-color);
   transition: color 0.4s;
 }
 
 .sa-th-row-plus {
   text-align: center;
-  font-size: 0.72rem;
+  font-size: 0.96rem;
   font-weight: 800;
   color: var(--ink4);
   line-height: 1;
@@ -1674,7 +1688,7 @@ tr.tr-danger td { background: var(--rose3); }
 }
 
 .sa-th-gross-note {
-  font-size: 0.72rem;
+  font-size: 0.96rem;
   color: var(--ink4);
   margin-top: 4px;
   font-style: italic;
@@ -1695,14 +1709,14 @@ tr.tr-danger td { background: var(--rose3); }
 }
 
 .sa-slider-label {
-  font-size: 0.72rem;
+  font-size: 0.96rem;
   font-weight: 700;
   color: var(--ink3);
 }
 
 .sa-slider-val {
   font-family: 'Fraunces', serif;
-  font-size: 0.9rem;
+  font-size: 0.96rem;
   font-weight: 700;
   color: var(--role-color);
   transition: color 0.4s;
@@ -1783,7 +1797,7 @@ tr.tr-danger td { background: var(--rose3); }
   position: absolute;
   top: 0; height: 100%;
   display: flex; align-items: center; justify-content: center;
-  font-size: 0.72rem; font-weight: 800;
+  font-size: 0.96rem; font-weight: 800;
   letter-spacing: 0.3px;
   text-transform: uppercase;
   color: white;
@@ -1806,8 +1820,8 @@ tr.tr-danger td { background: var(--rose3); }
 .sa-tick {
   display: flex; flex-direction: column; align-items: center;
 }
-.sa-tick-n { font-size: 0.72rem; font-weight: 800; color: var(--ink2); }
-.sa-tick-l { font-size: 0.72rem; color: var(--ink4); white-space: nowrap; }
+.sa-tick-n { font-size: 0.96rem; font-weight: 800; color: var(--ink2); }
+.sa-tick-l { font-size: 0.96rem; color: var(--ink4); white-space: nowrap; }
 
 /* Status pill */
 .sa-status-pill {
@@ -1815,7 +1829,7 @@ tr.tr-danger td { background: var(--rose3); }
   margin-top: 4px;
   padding: 5px 14px;
   border-radius: 99px;
-  font-size: 0.72rem;
+  font-size: 0.96rem;
   font-weight: 800;
   transition: all 0.3s;
 }
@@ -1839,7 +1853,7 @@ tr.tr-danger td { background: var(--rose3); }
 }
 
 .sa-push-note {
-  font-size: 0.72rem;
+  font-size: 0.96rem;
   color: #78350f;
   font-style: italic;
   margin-bottom: 12px;
@@ -1849,12 +1863,12 @@ tr.tr-danger td { background: var(--rose3); }
 .sa-push-table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 0.78rem;
+  font-size: 1.0rem;
 }
 
 .sa-push-table th {
   text-align: left;
-  font-size: 0.72rem;
+  font-size: 0.96rem;
   font-weight: 800;
   color: #92400e;
   padding: 5px 8px;
@@ -1882,7 +1896,7 @@ tr.tr-danger td { background: var(--rose3); }
   border-radius: 8px;
   border: 2px solid var(--border);
   background: var(--bg2);
-  font-size: 0.78rem;
+  font-size: 1.0rem;
   font-weight: 700;
   color: var(--ink3);
   cursor: pointer;
@@ -1915,7 +1929,7 @@ tr.tr-danger td { background: var(--rose3); }
   background: #fff7ed;
   border: 1.5px solid #fed7aa;
   border-radius: 8px;
-  font-size: 0.72rem;
+  font-size: 0.96rem;
   color: #92400e;
   line-height: 1.5;
 }
@@ -1924,7 +1938,7 @@ tr.tr-danger td { background: var(--rose3); }
 .tax-yr-btn {
   background: none;
   border: none;
-  font-size: 0.72rem;
+  font-size: 0.96rem;
   font-weight: 700;
   color: var(--role-color);
   cursor: pointer;
@@ -1942,7 +1956,7 @@ tr.tr-danger td { background: var(--rose3); }
   border: 1.5px solid #bae6fd;
   border-radius: 10px;
   padding: 16px 18px;
-  font-size: 0.78rem;
+  font-size: 1.0rem;
   line-height: 1.65;
   color: var(--ink2);
   animation: riseIn 0.3s cubic-bezier(0.16,1,0.3,1);
@@ -1953,7 +1967,7 @@ tr.tr-danger td { background: var(--rose3); }
 
 .tyb-title {
   font-family: 'Fraunces', serif;
-  font-size: 0.92rem;
+  font-size: 0.98rem;
   font-weight: 700;
   color: #0369a1;
   margin-bottom: 10px;
@@ -1993,7 +2007,7 @@ tr.tr-danger td { background: var(--rose3); }
   border-radius: 10px;
   padding: 12px 14px;
   margin-bottom: 14px;
-  font-size: 0.75rem;
+  font-size: 0.98rem;
   color: var(--ink2);
   line-height: 1.6;
   text-align: left;
@@ -2001,7 +2015,7 @@ tr.tr-danger td { background: var(--rose3); }
 .footer-disclaimer-icon { font-size: 1rem; flex-shrink: 0; margin-top: 1px; }
 
 .footer p {
-  font-size: 0.72rem;
+  font-size: 0.96rem;
   font-weight: 600;
   color: var(--ink4);
   line-height: 1.8;
@@ -2044,7 +2058,7 @@ tr.tr-danger td { background: var(--rose3); }
   flex-wrap: wrap;
   box-shadow: 0 -4px 24px rgba(0,0,0,0.3);
   border-top: 1px solid rgba(255,255,255,0.08);
-  font-size: 0.82rem;
+  font-size: 0.96rem;
   line-height: 1.5;
 }
 #cookieBanner p { margin: 0; flex: 1; min-width: 200px; }
@@ -2056,7 +2070,7 @@ tr.tr-danger td { background: var(--rose3); }
   border: none;
   padding: 8px 20px;
   border-radius: 6px;
-  font-size: 0.82rem;
+  font-size: 0.96rem;
   font-weight: 600;
   cursor: pointer;
 }
@@ -2067,7 +2081,7 @@ tr.tr-danger td { background: var(--rose3); }
   border: 1px solid rgba(255,255,255,0.15);
   padding: 8px 16px;
   border-radius: 6px;
-  font-size: 0.82rem;
+  font-size: 0.96rem;
   cursor: pointer;
 }
 .cookie-decline:hover { color: #e2e8f0; border-color: rgba(255,255,255,0.3); }
@@ -2078,7 +2092,7 @@ tr.tr-danger td { background: var(--rose3); }
   margin-top: 12px;
   padding-top: 12px;
   border-top: 1px solid rgba(255,255,255,0.08);
-  font-size: 0.78rem;
+  font-size: 1.0rem;
   color: rgba(255,255,255,0.5);
   text-align: center;
 }
@@ -2782,8 +2796,8 @@ tr.tr-danger td { background: var(--rose3); }
        Personal allowance tapers £1 per £2 above £100,000 · Additional rate 45% above £125,140</p>
     <p class="disclaimer">For planning guidance only — not official HMRC or financial advice. Tax rules change frequently. Always verify with your payslip or a qualified accountant.</p>
     <div class="footer-contact">
-      Questions or feedback? <a href="mailto:hello@smartshiftuk.co.uk">hello@smartshiftuk.co.uk</a>
-      · <a href="mailto:hello@smartshiftuk.co.uk?subject=Bug report">Report a bug</a>
+      Questions or feedback? <a href="mailto:alternatefact2@gmail.com">alternatefact2@gmail.com</a>
+      · <a href="mailto:alternatefact2@gmail.com?subject=Bug report — SmartShiftUK">Report a bug</a>
     </div>
   </div>
 
@@ -3835,7 +3849,7 @@ function renderPlanner() {
       <td>${r.monthShifts > 0 && !r.isPast ? fmt(r.monthLocumGross) : '—'}</td>
       <td style="color:${netColour};font-weight:700">
         ${r.monthShifts > 0 && !r.isPast ? `<div>${fmt(r.locumNetThisMonth)}</div>
-        <div style="font-size: 0.72rem;font-weight:600;color:var(--ink4)">${fmt(r.netPerShift)}/shift</div>` : '—'}
+        <div style="font-size: 0.96rem;font-weight:600;color:var(--ink4)">${fmt(r.netPerShift)}/shift</div>` : '—'}
       </td>
       <td style="font-weight:800;color:var(--ink)">${fmt(r.monthlyTH)}</td>
       <td style="color:${r.ytdANI >= TAPER ? 'var(--rose)' : r.ytdANI >= B20 ? 'var(--amber)' : 'var(--ink3)'}">${fmt(r.ytdGross)}</td>
