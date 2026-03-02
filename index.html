@@ -8,17 +8,60 @@
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
+
+  // ── Cookie consent — default deny until user accepts ───────
+  gtag('consent', 'default', {
+    analytics_storage: 'denied'
+  });
   gtag('js', new Date());
   gtag('config', 'G-KWHP3N0PS5');
 
-  // ── SmartShiftUK custom event helpers ──────────────────────
+  // ── Custom event helper ────────────────────────────────────
   function trackEvent(name, params) {
     if (typeof gtag === 'function') gtag('event', name, params || {});
   }
+
+  // ── Cookie consent logic ───────────────────────────────────
+  function acceptCookies() {
+    localStorage.setItem('suk_cookie', 'accepted');
+    gtag('consent', 'update', { analytics_storage: 'granted' });
+    document.getElementById('cookieBanner').classList.add('hidden');
+    trackEvent('cookie_consent', { choice: 'accepted' });
+  }
+
+  function declineCookies() {
+    localStorage.setItem('suk_cookie', 'declined');
+    document.getElementById('cookieBanner').classList.add('hidden');
+  }
+
+  // ── Show banner if no decision yet ────────────────────────
+  window.addEventListener('load', function() {
+    const choice = localStorage.getItem('suk_cookie');
+    if (!choice) {
+      setTimeout(() => document.getElementById('cookieBanner').classList.remove('hidden'), 1500);
+    } else if (choice === 'accepted') {
+      gtag('consent', 'update', { analytics_storage: 'granted' });
+    }
+  });
 </script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <title>SmartShiftUK — NHS Shift Tax Calculator</title>
 <meta name="description" content="Free NHS shift tax calculator. Find out exactly how many locum and bank shifts you can take without crossing into inefficient tax. Built for doctors, nurses, HCAs and AHPs.">
+
+<!-- Open Graph / WhatsApp / Facebook -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://smartshiftuk.co.uk/">
+<meta property="og:title" content="SmartShiftUK — NHS Shift Tax Calculator">
+<meta property="og:description" content="How many locum shifts can you take without crossing into inefficient tax? Free calculator for NHS doctors, nurses, HCAs and AHPs. Takes 60 seconds.">
+<meta property="og:image" content="https://smartshiftuk.co.uk/preview.png">
+<meta property="og:site_name" content="SmartShiftUK">
+
+<!-- Twitter / X Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:url" content="https://smartshiftuk.co.uk/">
+<meta name="twitter:title" content="SmartShiftUK — NHS Shift Tax Calculator">
+<meta name="twitter:description" content="How many locum shifts can you take without crossing into inefficient tax? Free calculator for NHS doctors, nurses, HCAs and AHPs.">
+<meta name="twitter:image" content="https://smartshiftuk.co.uk/preview.png">
 <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,600&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,700;1,9..144,300;1,9..144,400;1,9..144,500&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 /* ── TOKENS ─────────────────────────────────────────── */
@@ -1986,9 +2029,81 @@ tr.tr-danger td { background: var(--rose3); }
   th:nth-child(4), td:nth-child(4),
   th:nth-child(6), td:nth-child(6) { display: none; }
 }
+
+/* ── COOKIE CONSENT BANNER ───────────────────────────── */
+#cookieBanner {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  z-index: 9999;
+  background: #1a1f2e;
+  color: #e2e8f0;
+  padding: 16px 24px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  box-shadow: 0 -4px 24px rgba(0,0,0,0.3);
+  border-top: 1px solid rgba(255,255,255,0.08);
+  font-size: 0.82rem;
+  line-height: 1.5;
+}
+#cookieBanner p { margin: 0; flex: 1; min-width: 200px; }
+#cookieBanner a { color: #6ee7b7; text-decoration: underline; }
+.cookie-btns { display: flex; gap: 8px; flex-shrink: 0; }
+.cookie-accept {
+  background: var(--role-color, #6366f1);
+  color: white;
+  border: none;
+  padding: 8px 20px;
+  border-radius: 6px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+.cookie-accept:hover { opacity: 0.9; }
+.cookie-decline {
+  background: transparent;
+  color: #94a3b8;
+  border: 1px solid rgba(255,255,255,0.15);
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 0.82rem;
+  cursor: pointer;
+}
+.cookie-decline:hover { color: #e2e8f0; border-color: rgba(255,255,255,0.3); }
+#cookieBanner.hidden { display: none; }
+
+/* ── CONTACT / FEEDBACK ──────────────────────────────── */
+.footer-contact {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.5);
+  text-align: center;
+}
+.footer-contact a {
+  color: rgba(255,255,255,0.7);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255,255,255,0.2);
+  transition: color 0.2s;
+}
+.footer-contact a:hover { color: white; border-color: white; }
 </style>
 </head>
 <body>
+
+<!-- ── COOKIE CONSENT BANNER ── -->
+<div id="cookieBanner" class="hidden" role="dialog" aria-label="Cookie consent">
+  <p>
+    🍪 SmartShiftUK uses Google Analytics to understand how people use the site — no personal data is collected.
+    <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Learn more</a>
+  </p>
+  <div class="cookie-btns">
+    <button class="cookie-accept" onclick="acceptCookies()">Accept</button>
+    <button class="cookie-decline" onclick="declineCookies()">Decline</button>
+  </div>
+</div>
 
 <div class="page">
 
@@ -2666,6 +2781,10 @@ tr.tr-danger td { background: var(--rose3); }
        Student loan: Plan 1 £22,015 · Plan 2 £27,295 · Plan 5 £25,000 (9% above threshold)<br>
        Personal allowance tapers £1 per £2 above £100,000 · Additional rate 45% above £125,140</p>
     <p class="disclaimer">For planning guidance only — not official HMRC or financial advice. Tax rules change frequently. Always verify with your payslip or a qualified accountant.</p>
+    <div class="footer-contact">
+      Questions or feedback? <a href="mailto:hello@smartshiftuk.co.uk">hello@smartshiftuk.co.uk</a>
+      · <a href="mailto:hello@smartshiftuk.co.uk?subject=Bug report">Report a bug</a>
+    </div>
   </div>
 
 </div><!-- /results -->
