@@ -2043,6 +2043,213 @@ tr.tr-danger td { background: var(--rose3); }
   th:nth-child(6), td:nth-child(6) { display: none; }
 }
 
+/* ── CLINICIAN CREDIBILITY LINE ──────────────────────── */
+.hl-clinician {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(74,124,89,0.2);
+  border: 1px solid rgba(74,124,89,0.4);
+  border-radius: 20px;
+  padding: 6px 14px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #a8d5b5;
+  margin: 14px 0 16px;
+}
+
+/* ── TRUST BAR ───────────────────────────────────────── */
+.hl-trust-bar {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 12px;
+  padding: 12px 0;
+  margin-bottom: 20px;
+}
+.hl-trust-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+.hl-trust-num {
+  font-size: 1.3rem;
+  font-weight: 900;
+  color: white;
+  font-family: 'Fraunces', serif;
+}
+.hl-trust-label {
+  font-size: 0.76rem;
+  color: rgba(255,255,255,0.5);
+  font-weight: 600;
+  text-align: center;
+}
+.hl-trust-divider {
+  width: 1px;
+  height: 36px;
+  background: rgba(255,255,255,0.1);
+  flex-shrink: 0;
+}
+
+/* ── TESTIMONIALS ────────────────────────────────────── */
+.hl-testimonials {
+  margin-top: 20px;
+  position: relative;
+  z-index: 1;
+}
+.hl-testimonials-head {
+  font-size: 0.78rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: rgba(255,255,255,0.4);
+  text-align: center;
+  margin-bottom: 14px;
+}
+.hl-testimonial-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+}
+@media (min-width: 640px) {
+  .hl-testimonial-grid { grid-template-columns: repeat(3, 1fr); }
+}
+.hl-testimonial {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.09);
+  border-radius: 14px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.hl-t-quote {
+  font-size: 0.86rem;
+  line-height: 1.6;
+  color: rgba(255,255,255,0.8);
+  font-style: italic;
+  flex: 1;
+}
+.hl-t-author {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.hl-t-avatar {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: rgba(74,124,89,0.3);
+  border: 1px solid rgba(74,124,89,0.4);
+  color: #a8d5b5;
+  font-size: 0.72rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.hl-t-name {
+  font-size: 0.84rem;
+  font-weight: 700;
+  color: white;
+}
+.hl-t-role {
+  font-size: 0.76rem;
+  color: rgba(255,255,255,0.45);
+}
+
+/* ── 3-STEP HOW IT WORKS ─────────────────────────────── */
+.hl-steps {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin: 20px 0 18px;
+}
+.hl-step {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 10px;
+  padding: 8px 14px;
+}
+.hl-step-num {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--sage);
+  color: white;
+  font-size: 0.78rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.hl-step-text {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: rgba(255,255,255,0.9);
+}
+.hl-step-arrow {
+  color: rgba(255,255,255,0.35);
+  font-size: 1rem;
+  font-weight: 700;
+}
+@media (max-width: 480px) {
+  .hl-steps { flex-direction: column; align-items: flex-start; gap: 6px; }
+  .hl-step-arrow { transform: rotate(90deg); margin-left: 18px; }
+}
+
+/* ── ACCORDION ───────────────────────────────────────── */
+.hl-accordion {
+  margin-top: 12px;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.12);
+}
+.hl-acc-trigger {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(255,255,255,0.06);
+  border: none;
+  padding: 14px 18px;
+  cursor: pointer;
+  text-align: left;
+  color: white;
+  font-family: 'Nunito', sans-serif;
+  font-size: 0.94rem;
+  font-weight: 700;
+  transition: background 0.2s;
+}
+.hl-acc-trigger:hover { background: rgba(255,255,255,0.1); }
+.hl-acc-trigger[aria-expanded="true"] { background: rgba(255,255,255,0.09); }
+.hl-acc-icon { font-size: 1rem; flex-shrink: 0; }
+.hl-acc-label { flex: 1; }
+.hl-acc-chevron {
+  font-size: 0.7rem;
+  color: rgba(255,255,255,0.5);
+  transition: transform 0.25s;
+  flex-shrink: 0;
+}
+.hl-acc-trigger[aria-expanded="true"] .hl-acc-chevron {
+  transform: rotate(180deg);
+}
+.hl-acc-body {
+  padding: 0 16px 16px;
+  background: rgba(0,0,0,0.15);
+}
+.hl-acc-body[hidden] { display: none; }
+
 /* ── COOKIE CONSENT BANNER ───────────────────────────── */
 #cookieBanner {
   position: fixed;
@@ -2142,13 +2349,47 @@ tr.tr-danger td { background: var(--rose3); }
       How many locum shifts can you take<br>
       <em>without crossing into inefficient tax?</em>
     </h1>
-    <p class="hl-sub">
-      Most NHS calculators tell you what you earned. SmartShiftUK tells you 
-      what to <strong>do next</strong> — the exact number of shifts per month 
-      that keeps you in the most efficient tax band, whether your cliff edge 
-      is the <strong>40% higher rate</strong>, the <strong>60% taper trap</strong>, 
-      or the <strong>45% additional rate</strong>.
-    </p>
+
+    <!-- Clinician credibility line -->
+    <div class="hl-clinician">
+      🩺 Built by NHS clinicians who understand locum reality
+    </div>
+
+    <!-- Trust bar -->
+    <div class="hl-trust-bar">
+      <div class="hl-trust-item">
+        <span class="hl-trust-num">4,000+</span>
+        <span class="hl-trust-label">NHS professionals</span>
+      </div>
+      <div class="hl-trust-divider"></div>
+      <div class="hl-trust-item">
+        <span class="hl-trust-num">All</span>
+        <span class="hl-trust-label">NHS roles covered</span>
+      </div>
+      <div class="hl-trust-divider"></div>
+      <div class="hl-trust-item">
+        <span class="hl-trust-num">Free</span>
+        <span class="hl-trust-label">No signup needed</span>
+      </div>
+    </div>
+
+    <!-- 3-step how it works -->
+    <div class="hl-steps">
+      <div class="hl-step">
+        <div class="hl-step-num">1</div>
+        <div class="hl-step-text">Pick your NHS role</div>
+      </div>
+      <div class="hl-step-arrow">→</div>
+      <div class="hl-step">
+        <div class="hl-step-num">2</div>
+        <div class="hl-step-text">Enter your salary &amp; shifts</div>
+      </div>
+      <div class="hl-step-arrow">→</div>
+      <div class="hl-step">
+        <div class="hl-step-num">3</div>
+        <div class="hl-step-text">See your exact shift limit</div>
+      </div>
+    </div>
 
     <!-- Three proof points -->
     <div class="hl-pills">
@@ -2162,89 +2403,140 @@ tr.tr-danger td { background: var(--rose3); }
     </a>
   </div>
 
-  <!-- Feature cards -->
-  <!-- Tax threshold ladder — three cards, one per cliff edge -->
-  <div class="hl-threshold-label">The tax cliff edges SmartShiftUK protects you from</div>
-  <div class="hl-thresholds">
+  <!-- Testimonials -->
+  <div class="hl-testimonials">
+    <div class="hl-testimonials-head">Trusted by NHS professionals across the UK</div>
+    <div class="hl-testimonial-grid">
 
-    <div class="hl-thresh hl-thresh-amber" role="region" aria-label="40% Higher Rate tax threshold">
-      <div class="hl-thresh-pct" aria-hidden="true">40%</div>
-      <div class="hl-thresh-info">
-        <div class="hl-thresh-title"><span class="hl-thresh-icon" aria-hidden="true">📈</span> Higher Rate — above £50,270</div>
-        <div class="hl-thresh-who">HCAs · Band 5/6 nurses · F1/F2 doctors · AHPs</div>
-        <div class="hl-thresh-body">If your salary is in the 20% basic rate band, extra locum or bank shifts can quietly push you over £50,270 — where every pound above that line is taxed at 40%. SmartShiftUK tells you exactly how many shifts you can take before crossing.</div>
+      <div class="hl-testimonial">
+        <div class="hl-t-quote">"Finally a calculator that actually tells me what to do — not just what I earned. Saved me from crossing into the taper trap this year."</div>
+        <div class="hl-t-author">
+          <div class="hl-t-avatar">ST</div>
+          <div>
+            <div class="hl-t-name">ST5 Registrar</div>
+            <div class="hl-t-role">London NHS Trust</div>
+          </div>
+        </div>
       </div>
-    </div>
 
-    <div class="hl-thresh hl-thresh-orange" role="region" aria-label="60% effective tax rate taper trap">
-      <div class="hl-thresh-pct" aria-hidden="true">60%</div>
-      <div class="hl-thresh-info">
-        <div class="hl-thresh-title"><span class="hl-thresh-icon" aria-hidden="true">⚠️</span> The Taper Trap — £100,000 to £125,140</div>
-        <div class="hl-thresh-who">Band 7/8 nurses · ST3+ doctors · Specialty doctors · Consultants</div>
-        <div class="hl-thresh-body">Above £100,000 your tax-free personal allowance is clawed back — £1 for every £2 earned. The effective rate hits 60%. Most NHS professionals don't know this exists until it's too late. SmartShiftUK warns you before you cross it.</div>
+      <div class="hl-testimonial">
+        <div class="hl-t-quote">"I had no idea about the 60% taper trap. This tool showed me I was 3 shifts away from losing thousands. Can't believe this is free."</div>
+        <div class="hl-t-author">
+          <div class="hl-t-avatar">B7</div>
+          <div>
+            <div class="hl-t-name">Band 7 Nurse</div>
+            <div class="hl-t-role">NHS Trust, Midlands</div>
+          </div>
+        </div>
       </div>
-    </div>
 
-    <div class="hl-thresh hl-thresh-red" role="region" aria-label="45% Additional Rate tax threshold">
-      <div class="hl-thresh-pct" aria-hidden="true">45%</div>
-      <div class="hl-thresh-info">
-        <div class="hl-thresh-title"><span class="hl-thresh-icon hl-thresh-icon-top" aria-hidden="true">TOP</span> Additional Rate — above £125,140</div>
-        <div class="hl-thresh-who">High-earning consultants · Senior specialty doctors</div>
-        <div class="hl-thresh-body">Once you clear the taper at £125,140, the rate settles at 45% — painful but at least consistent. SmartShiftUK shows whether it's worth pushing through the taper zone to reach this point, or better to stop.</div>
+      <div class="hl-testimonial">
+        <div class="hl-t-quote">"Used this before every locum block. The month-by-month planner is brilliant — I can see exactly when to stop taking shifts."</div>
+        <div class="hl-t-author">
+          <div class="hl-t-avatar">GP</div>
+          <div>
+            <div class="hl-t-name">Specialty Doctor</div>
+            <div class="hl-t-role">NHS, North West</div>
+          </div>
+        </div>
       </div>
-    </div>
 
-  </div>
-
-  <!-- Feature cards -->
-  <div class="hl-features">
-    <div class="hl-feat">
-      <div class="hl-feat-icon">🎯</div>
-      <div class="hl-feat-title">Your personal shift limit</div>
-      <div class="hl-feat-body">Based on your salary and role, SmartShiftUK calculates the exact shifts per month that keep you in the most efficient tax band — 20%, 40%, or side-stepping the 60% trap entirely.</div>
-    </div>
-    <div class="hl-feat">
-      <div class="hl-feat-icon">💷</div>
-      <div class="hl-feat-title">Real take-home numbers</div>
-      <div class="hl-feat-body">Not gross salary. What actually lands in your account after income tax, National Insurance, NHS pension, and student loan.</div>
-    </div>
-    <div class="hl-feat">
-      <div class="hl-feat-icon">📅</div>
-      <div class="hl-feat-title">Month-by-month planner</div>
-      <div class="hl-feat-body">Plan your locum calendar across the tax year. See when you'll cross tax thresholds and how to time shifts for maximum efficiency.</div>
-    </div>
-    <div class="hl-feat">
-      <div class="hl-feat-icon">🌍</div>
-      <div class="hl-feat-title">New to the UK tax system?</div>
-      <div class="hl-feat-body">UK tax runs April to April, not January to December. Plain-English explanations for every field — no prior knowledge needed.</div>
     </div>
   </div>
 
-  <!-- What makes it different -->
-  <div class="hl-compare">
-    <div class="hl-compare-head">What other calculators miss</div>
-    <div class="hl-compare-grid">
-      <div class="hl-compare-col hl-others">
-        <div class="hl-col-title">❌ Other NHS calculators</div>
-        <ul>
-          <li>Show your annual salary — nothing more</li>
-          <li>No locum or bank shift planning</li>
-          <li>Don't warn about the 40%, 60%, or 45% thresholds</li>
-          <li>Doctor-only, or AfC bands only</li>
-          <li>No month-by-month breakdown</li>
-          <li>Ignore pension opt-out scenarios</li>
-        </ul>
+  <!-- Collapsible: Tax thresholds -->
+  <div class="hl-accordion">
+    <button class="hl-acc-trigger" onclick="toggleAccordion('accThresholds')" aria-expanded="false" aria-controls="accThresholds">
+      <span class="hl-acc-icon">📈</span>
+      <span class="hl-acc-label">The tax cliff edges SmartShiftUK protects you from</span>
+      <span class="hl-acc-chevron" aria-hidden="true">▼</span>
+    </button>
+    <div class="hl-acc-body" id="accThresholds" hidden>
+      <div class="hl-thresholds">
+        <div class="hl-thresh hl-thresh-amber" role="region" aria-label="40% Higher Rate tax threshold">
+          <div class="hl-thresh-pct" aria-hidden="true">40%</div>
+          <div class="hl-thresh-info">
+            <div class="hl-thresh-title"><span class="hl-thresh-icon" aria-hidden="true">📈</span> Higher Rate — above £50,270</div>
+            <div class="hl-thresh-who">HCAs · Band 5/6 nurses · F1/F2 doctors · AHPs</div>
+            <div class="hl-thresh-body">If your salary is in the 20% basic rate band, extra locum or bank shifts can quietly push you over £50,270 — where every pound above that line is taxed at 40%. SmartShiftUK tells you exactly how many shifts you can take before crossing.</div>
+          </div>
+        </div>
+        <div class="hl-thresh hl-thresh-orange" role="region" aria-label="60% effective tax rate taper trap">
+          <div class="hl-thresh-pct" aria-hidden="true">60%</div>
+          <div class="hl-thresh-info">
+            <div class="hl-thresh-title"><span class="hl-thresh-icon" aria-hidden="true">⚠️</span> The Taper Trap — £100,000 to £125,140</div>
+            <div class="hl-thresh-who">Band 7/8 nurses · ST3+ doctors · Specialty doctors · Consultants</div>
+            <div class="hl-thresh-body">Above £100,000 your tax-free personal allowance is clawed back — £1 for every £2 earned. The effective rate hits 60%. Most NHS professionals don't know this exists until it's too late. SmartShiftUK warns you before you cross it.</div>
+          </div>
+        </div>
+        <div class="hl-thresh hl-thresh-red" role="region" aria-label="45% Additional Rate tax threshold">
+          <div class="hl-thresh-pct" aria-hidden="true">45%</div>
+          <div class="hl-thresh-info">
+            <div class="hl-thresh-title"><span class="hl-thresh-icon hl-thresh-icon-top" aria-hidden="true">TOP</span> Additional Rate — above £125,140</div>
+            <div class="hl-thresh-who">High-earning consultants · Senior specialty doctors</div>
+            <div class="hl-thresh-body">Once you clear the taper at £125,140, the rate settles at 45% — painful but at least consistent. SmartShiftUK shows whether it's worth pushing through the taper zone to reach this point, or better to stop.</div>
+          </div>
+        </div>
       </div>
-      <div class="hl-compare-col hl-us">
-        <div class="hl-col-title">✅ SmartShiftUK</div>
-        <ul>
-          <li>Tells you <strong>how many shifts to take this month</strong></li>
-          <li>Warns you about <strong>your</strong> relevant tax cliff edge</li>
-          <li>Salary + locum + bank shifts combined</li>
-          <li>All roles: doctors, nurses, HCAs, AHPs</li>
-          <li>Remaining months of tax year planned out</li>
-          <li>Pension opted-in or opted-out toggle</li>
-        </ul>
+    </div>
+  </div>
+
+  <!-- Collapsible: What it does + comparison -->
+  <div class="hl-accordion">
+    <button class="hl-acc-trigger" onclick="toggleAccordion('accFeatures')" aria-expanded="false" aria-controls="accFeatures">
+      <span class="hl-acc-icon">🎯</span>
+      <span class="hl-acc-label">What SmartShiftUK does differently</span>
+      <span class="hl-acc-chevron" aria-hidden="true">▼</span>
+    </button>
+    <div class="hl-acc-body" id="accFeatures" hidden>
+      <div class="hl-features">
+        <div class="hl-feat">
+          <div class="hl-feat-icon">🎯</div>
+          <div class="hl-feat-title">Your personal shift limit</div>
+          <div class="hl-feat-body">Based on your salary and role, SmartShiftUK calculates the exact shifts per month that keep you in the most efficient tax band — 20%, 40%, or side-stepping the 60% trap entirely.</div>
+        </div>
+        <div class="hl-feat">
+          <div class="hl-feat-icon">💷</div>
+          <div class="hl-feat-title">Real take-home numbers</div>
+          <div class="hl-feat-body">Not gross salary. What actually lands in your account after income tax, National Insurance, NHS pension, and student loan.</div>
+        </div>
+        <div class="hl-feat">
+          <div class="hl-feat-icon">📅</div>
+          <div class="hl-feat-title">Month-by-month planner</div>
+          <div class="hl-feat-body">Plan your locum calendar across the tax year. See when you'll cross tax thresholds and how to time shifts for maximum efficiency.</div>
+        </div>
+        <div class="hl-feat">
+          <div class="hl-feat-icon">🌍</div>
+          <div class="hl-feat-title">New to the UK tax system?</div>
+          <div class="hl-feat-body">UK tax runs April to April, not January to December. Plain-English explanations for every field — no prior knowledge needed.</div>
+        </div>
+      </div>
+      <div class="hl-compare">
+        <div class="hl-compare-head">What other calculators miss</div>
+        <div class="hl-compare-grid">
+          <div class="hl-compare-col hl-others">
+            <div class="hl-col-title">❌ Other NHS calculators</div>
+            <ul>
+              <li>Show your annual salary — nothing more</li>
+              <li>No locum or bank shift planning</li>
+              <li>Don't warn about the 40%, 60%, or 45% thresholds</li>
+              <li>Doctor-only, or AfC bands only</li>
+              <li>No month-by-month breakdown</li>
+              <li>Ignore pension opt-out scenarios</li>
+            </ul>
+          </div>
+          <div class="hl-compare-col hl-us">
+            <div class="hl-col-title">✅ SmartShiftUK</div>
+            <ul>
+              <li>Tells you <strong>how many shifts to take this month</strong></li>
+              <li>Warns you about <strong>your</strong> relevant tax cliff edge</li>
+              <li>Salary + locum + bank shifts combined</li>
+              <li>All roles: doctors, nurses, HCAs, AHPs</li>
+              <li>Remaining months of tax year planned out</li>
+              <li>Pension opted-in or opted-out toggle</li>
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -3938,6 +4230,16 @@ function renderBracketChips(rows, taperMonthIdx, stopMonthIdx) {
   if (!chips) chips = `<span class="bracket-chip bc-grey">All bands accounted for</span>`;
 
   bar.innerHTML = chips;
+}
+
+// ── ACCORDION TOGGLE ─────────────────────────────────────
+function toggleAccordion(id) {
+  const body = document.getElementById(id);
+  const trigger = body.previousElementSibling;
+  const isOpen = !body.hidden;
+  body.hidden = isOpen;
+  trigger.setAttribute('aria-expanded', String(!isOpen));
+  trackEvent('explainer_opened', { section: id, action: isOpen ? 'closed' : 'opened' });
 }
 
 window.addEventListener('load',()=>{
