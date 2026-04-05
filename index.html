@@ -611,7 +611,7 @@ tr.tr-danger td{background:var(--rose3);}
             </div>
             <div class="shift-type-counter">
               <button type="button" class="stype-btn" onclick="adjustShiftType('longday',-1)">−</button>
-              <input type="number" class="stype-input" id="val-longday" value="0" min="0" max="99" oninput="setShiftType('longday',this.value)">
+              <input type="number" class="stype-input" id="val-longday" value="0" min="0" max="99" inputmode="numeric" oninput="setShiftType('longday',this.value)">
               <button type="button" class="stype-btn" onclick="adjustShiftType('longday',1)">+</button>
             </div>
           </div>
@@ -626,7 +626,7 @@ tr.tr-danger td{background:var(--rose3);}
             </div>
             <div class="shift-type-counter">
               <button type="button" class="stype-btn" onclick="adjustShiftType('shortday',-1)">−</button>
-              <input type="number" class="stype-input" id="val-shortday" value="0" min="0" max="99" oninput="setShiftType('shortday',this.value)">
+              <input type="number" class="stype-input" id="val-shortday" value="0" min="0" max="99" inputmode="numeric" oninput="setShiftType('shortday',this.value)">
               <button type="button" class="stype-btn" onclick="adjustShiftType('shortday',1)">+</button>
             </div>
           </div>
@@ -641,7 +641,7 @@ tr.tr-danger td{background:var(--rose3);}
             </div>
             <div class="shift-type-counter">
               <button type="button" class="stype-btn" onclick="adjustShiftType('late',-1)">−</button>
-              <input type="number" class="stype-input" id="val-late" value="0" min="0" max="99" oninput="setShiftType('late',this.value)">
+              <input type="number" class="stype-input" id="val-late" value="0" min="0" max="99" inputmode="numeric" oninput="setShiftType('late',this.value)">
               <button type="button" class="stype-btn" onclick="adjustShiftType('late',1)">+</button>
             </div>
           </div>
@@ -656,7 +656,7 @@ tr.tr-danger td{background:var(--rose3);}
             </div>
             <div class="shift-type-counter">
               <button type="button" class="stype-btn" onclick="adjustShiftType('night',-1)">−</button>
-              <input type="number" class="stype-input" id="val-night" value="0" min="0" max="99" oninput="setShiftType('night',this.value)">
+              <input type="number" class="stype-input" id="val-night" value="0" min="0" max="99" inputmode="numeric" oninput="setShiftType('night',this.value)">
               <button type="button" class="stype-btn" onclick="adjustShiftType('night',1)">+</button>
             </div>
           </div>
@@ -924,7 +924,7 @@ const ROLES={
     {label:'Band 5 — Physio / OT / Rad',    rate:15.17,hours:9,pension:8.3, salary:29970,band:5},
     {label:'Band 6 — Specialist',            rate:18.69,hours:9,pension:9.8, salary:37338,band:6},
     {label:'Band 7 — Advanced Practitioner', rate:23.10,hours:9,pension:9.8, salary:46148,band:7},
-    {label:'Band 8a — Consultant AHP',       rate:26.92,hours:9,pension:10.7,salary:53755,band:'8a'},
+    {label:'Band 8a — Consultant AHP',       rate:26.92,hours:9,pension:9.8, salary:53755,band:'8a'},
     {label:'Band 8b — Senior Consultant',    rate:31.13,hours:9,pension:10.7,salary:62215,band:'8b'},
   ]}
 };
@@ -1454,7 +1454,12 @@ function adjustShiftType(type,delta){
 }
 
 function setShiftType(type,val){
-  shiftCounts[type]=Math.max(0,parseInt(val)||0);
+  // Handle empty string, decimals and negative values cleanly
+  const parsed = val === '' ? 0 : Math.max(0, Math.floor(parseFloat(val)||0));
+  shiftCounts[type] = parsed;
+  // Update the input to show the clean integer (avoids showing "2.5" or "-1")
+  const el = document.getElementById('val-'+type);
+  if(el && document.activeElement !== el) el.value = parsed;
   syncShiftHiddenInputs();
   recalcShiftSummary();
 }
